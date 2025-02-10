@@ -58,8 +58,8 @@ class GDA:
         phi = 1/ m * np.sum(y == 1)
         mu_0 = (y == 0).dot(x) / np.sum(y == 0)
         mu_1 = (y == 1).dot(x) / np.sum(y == 1)
-        mu_yi = 
-        sigma = 
+        # mu_yi = 
+        # sigma = 
         # Write theta in terms of the parameters
         # *** END CODE HERE ***
 
