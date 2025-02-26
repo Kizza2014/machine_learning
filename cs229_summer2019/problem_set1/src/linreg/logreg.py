@@ -23,7 +23,6 @@ def main(train_path, valid_path, save_path):
     np.savetxt(save_path, probs)
     # *** END CODE HERE ***
 
-
 class LogisticRegression:
     """Logistic regression with Newton's Method as the solver.
 
@@ -56,40 +55,29 @@ class LogisticRegression:
             y: Training example labels. Shape (n_examples,).
         """
         # *** START CODE HERE ***
-        m, n = x.shape
+        _, n = x.shape
         if not self.theta:
             self.theta = np.zeros(n, dtype=np.float32)
-
-        for i in range(self.max_iter):
-            grad = self._gradient(x, y)
-            hess = self._hessian(x)
-
+        
+        for iter in range(self.max_iter):
+            # parameters estimation
+            hessian = self._hessian(x)
+            jacobian = self._jacobian(x, y)
             old_theta = self.theta.copy()
-            self.theta -= self.step_size * np.linalg.inv(hess).dot(grad)
+            self.theta -= self.step_size * np.dot(np.linalg.inv(hessian), jacobian)
+
+            # evaluate
+            y_pred = self.predict(x)
+            loss = self._loss(y, y_pred)
 
             if self.verbose:
-                print(f'Iter {i+1}: loss={self._loss(x, y)}')
+                print(f'Iter {iter}: loss={loss}')
 
-            if np.sum(np.abs(self.theta - old_theta)) < self.eps:
+            if np.linalg.norm(old_theta - self.theta, ord=1) < self.eps:
+                print(f'Converged after {iter} iterations.')
                 break
-        if self.verbose:
-            print('Final theta (logreg): {}'.format(self.theta))
         # *** END CODE HERE ***
     
-    def _loss(self, x, y):
-        probs = self._sigmoid(x.dot(self.theta))
-        return -np.mean(y * np.log(probs + self.eps) + (1 - y) * np.log(1 - probs + self.eps))
-
-    def _gradient(self, x, y):
-        m, _ = x.shape
-        probs = self._sigmoid(x.dot(self.theta))
-        return -1 / m * x.T.dot(y - probs)
-
-    def _hessian(self, x):
-        m, _ = x.shape
-        probs = self._sigmoid(x.dot(self.theta))
-        diag = np.diag(probs * (1. - probs))
-        return 1 / m * x.T.dot(diag).dot(x)
 
     def predict(self, x):
         """Make a prediction given new inputs x.
@@ -108,6 +96,20 @@ class LogisticRegression:
     @staticmethod
     def _sigmoid(x):
         return 1 / (1 + np.exp(-x))
+    
+    def _loss(self, y_true, y_pred):
+        n = len(y_true)
+        return - 1 / n * np.sum((y_true * np.log(y_pred + self.eps) + (1 - y_true) * np.log(1 - y_pred + self.eps)))
+
+    def _hessian(self, x):
+        probs = self.predict(x)
+        diag = np.diag(probs * (1 - probs))
+        return x.T.dot(diag).dot(x)
+
+    def _jacobian(self, x, y):
+        _, n = x.shape
+        probs = self.predict(x)
+        return - 1 / n * x.T.dot(y - probs)
 
 if __name__ == '__main__':
     main(train_path='ds1_train.csv',
