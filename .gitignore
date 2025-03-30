@@ -1,0 +1,12 @@
+# Ignore the yalefaces folder
+Lab/lab6/yalefaces/
+Lab/lab5_pca/t10k-images-idx3-ubyte.gz
+Lab/lab6/t10k-images-idx3-ubyte.gz
+Lab/lab6/t10k-labels-idx1-ubyte.gz
+Lab/lab6/train-images-idx3-ubyte.gz
+Lab/lab6/train-labels-idx1-ubyte.gz
+Lab/lab5_pca/t10k-labels-idx1-ubyte.gz
+Lab/lab5_pca/train-images-idx3-ubyte.gz
+Lab/lab5_pca/train-labels-idx1-ubyte.gz
+cs229_summer2019/problem_set1/src/posonly/__pycache__/logreg.cpython-310.pyc
+cs229_summer2019/problem_set1/src/posonly/__pycache__/util.cpython-310.pyc
