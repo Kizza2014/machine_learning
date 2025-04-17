@@ -2,7 +2,7 @@
 
 ### 1. KNN
 - Baseline:
-  - precision    recall  f1-score   support
+        precision    recall  f1-score   support
 
          0.0       0.91      1.00      0.95     45957
          1.0       0.57      0.05      0.08      4779
