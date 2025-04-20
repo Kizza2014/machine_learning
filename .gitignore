@@ -347,3 +347,13 @@ Lab/lab7_perceptron/sonar.all-data.csv
 Lab/lab7_perceptron/framingham.csv
 Lab/lab7_perceptron/Analysis-Portfolio-Task-Data.csv
 final_term/data/heart_disease_health_indicators_BRFSS2015.csv
+Lab/lab9_cnn/cats_and_dogs_filtered
+Lab/lab8_ann/train-images-idx3-ubyte.gz
+Lab/lab8_ann/train-labels-idx1-ubyte.gz
+Lab/lab8_ann/t10k-images-idx3-ubyte.gz
+Lab/lab8_ann/t10k-labels-idx1-ubyte.gz
+Lab/lab8_ann/yalefaces
+Lab/lab8_ann/Dry_Bean_Dataset.csv
+Lab/lab8_ann/SAT_GPA.csv
+Lab/lab8_ann/vidu4_lin_reg.txt
+Lab/lab8_ann/real_estate.csv
